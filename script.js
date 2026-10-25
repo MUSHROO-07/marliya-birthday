@@ -93,7 +93,7 @@
         showToast('The Wish Wall needs its Supabase connection before wishes can be sent online.');
         return;
       }
-      const { error } = await supabase.from('marliya_wishes').insert({ ...wish, approved: false });
+      const { error } = await supabase.from('marliya_wishes').insert({ ...wish, approved: true });
       if (error) throw error;
       form.reset(); wishStatus.textContent = 'Your note was received and is waiting for approval.';
       showToast('Your wish was sent. Thank you for making her day special.');
