@@ -50,8 +50,19 @@
 
   // Childhood image is optional; if present, reveal it and hide the placeholder.
   const childhoodPhoto = $('#childhoodPhoto');
-  childhoodPhoto.addEventListener('load', () => { childhoodPhoto.hidden = false; $('#photoPlaceholder').hidden = true; });
-  childhoodPhoto.addEventListener('error', () => { childhoodPhoto.hidden = true; $('#photoPlaceholder').hidden = false; });
+  if (childhoodPhoto) {
+  childhoodPhoto.addEventListener('load', () => {
+    childhoodPhoto.hidden = false;
+    const placeholder = $('#photoPlaceholder');
+    if (placeholder) placeholder.hidden = true;
+  });
+
+  childhoodPhoto.addEventListener('error', () => {
+    childhoodPhoto.hidden = true;
+    const placeholder = $('#photoPlaceholder');
+    if (placeholder) placeholder.hidden = false;
+  });
+}
 
   const toast = $('#toast'); let toastTimer;
   function showToast(message) { toast.textContent = message; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 4200); }
