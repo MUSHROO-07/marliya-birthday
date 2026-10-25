@@ -95,8 +95,10 @@
       }
       const { error } = await supabase.from('marliya_wishes').insert({ ...wish, approved: true });
       if (error) throw error;
-      form.reset(); wishStatus.textContent = 'Your note was received and is waiting for approval.';
-      showToast('Your wish was sent. Thank you for making her day special.');
+      form.reset();
+wishStatus.textContent = 'Your wish is now on the Wish Wall!';
+showToast('Your wish was sent. Thank you for making her day special.');
+await loadWishes();
     } catch (err) {
       console.error(err); wishStatus.textContent = 'We could not send that just now. Please try again.';
       showToast('Could not send the wish. Please check the connection and try again.');
